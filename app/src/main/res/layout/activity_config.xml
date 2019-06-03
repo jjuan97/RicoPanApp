@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityConfig"
+    android:background="@color/colorBlanco">
+
+    <TextView
+        android:id="@+id/txtBannerConf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:text="@string/lyConfBanner"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="28dp"
+        android:textColor="@color/colorBlanco"
+        app:fontFamily="@font/autour_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtEditIp"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@color/colorPrimaryLight"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:hint="Ingresar IP"
+        android:textColor="@color/colorNegro"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtShowIp"
+        app:fontFamily="@font/autour_one"/>
+
+    <TextView
+        android:id="@+id/txtShowIp"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:gravity="center"
+        android:background="@color/colorPrimaryLight"
+        android:text="TextView"
+        android:textColor="@color/colorNegro"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:fontFamily="@font/autour_one"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="70dp"
+        android:text="@string/lyTxtInfo1"
+        android:textColor="@color/colorNegro"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:fontFamily="@font/autour_one"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/lyTxtInfo2"
+        android:textColor="@color/colorNegro"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:fontFamily="@font/autour_one"/>
+
+    <Button
+        android:id="@+id/btnConfExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:onClick="exitConf"
+        android:text="@string/lyBtnExit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:fontFamily="@font/autour_one"/>
+
+    <Button
+        android:id="@+id/btnConfSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:gravity="center"
+        android:onClick="saveConf"
+        android:text="@string/lyBtnSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditIp"
+        app:fontFamily="@font/autour_one"/>
+</android.support.constraint.ConstraintLayout>

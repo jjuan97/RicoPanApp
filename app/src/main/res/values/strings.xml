@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">Rico Pan</string>
+    <string name="app_name">laPanaderia</string>
+    <string name="texto">Selecciona tu nombre:</string>
+    <string name="texto2">Gestión de Inventario</string>
+    <string name="desc">imageView</string>
+    <string name="btn_log">Aceptar</string>
+    <string name="texto3">Inventario</string>
+    <string name="cantidad">- Cantidad actual</string>
+    <string name="nPanes">Numero de nuevos panes: </string>
+    <string name="nBandejas">Numero de nuevas bandejas: </string>
+    <string name="nPanes2">Numero de panes por bandeja: </string>
+    <string name="btnCambio">Ingresar por bandejas</string>
+    <string name="btnCambio2">Ingresar por unidad</string>
+    <string name="btnDisminuir">Disminuir</string>
+    <string name="btnAumentar">Aumentar</string>
+    <string name="selCant">Cant.</string>
+    <string name="imgDescrip">img18</string>
+    <string name="imgDescrip2">img19</string>
+    <string name="IPAddress">http://192.168.137.1/</string>
+    <string name="lyConfBanner">Configuración</string>
+    <string name="lyTxtInfo1">IP Actual: </string>
+    <string name="lyTxtInfo2">Nueva IP:  </string>
+    <string name="lyBtnSave">Guardar</string>
+    <string name="lyBtnExit"> Salir </string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
