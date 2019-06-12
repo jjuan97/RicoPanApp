@@ -3,6 +3,7 @@ package com.panaderia.ricopan;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
     @Override
@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
         });
     }
 
+
     private void cargarUsuarios() {
 
         String url = "http://"+loadPreferences()+"/app/showUsers.php";
@@ -91,8 +92,8 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
     @Override
     public void onResponse(JSONObject response) {
-        JSONArray json = response.optJSONArray("usuarios");
 
+        JSONArray json = response.optJSONArray("usuarios");
         try {
             for(int i=0; i<json.length(); i++){
                 JSONObject jsonObject = json.getJSONObject(i);
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
             e.printStackTrace();
         }
     }
+
 
     public void entrar(View view){
         sp1 = (Spinner)findViewById(R.id.spinner);

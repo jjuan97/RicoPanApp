@@ -66,17 +66,21 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
 
         public void asignarDatos(final Producto producto) {
             titulo.setText(producto.getTitle());
-            imagen.setImageBitmap(producto.getImagen2());
+            //imagen.setImageBitmap(producto.getImagen2());
             //imagen.setImageBitmap(BitmapFactory.decodeResource(contexto.getResources(), R.mipmap.noimagen));
             request = Volley.newRequestQueue(contexto);
             String url = producto.getImagenStr();
-            /*
-            if (!url.equals("none")) {
+            System.out.println(url);
+            if (url.equals("none") == false) {
+                System.out.println("REQUEST");
                 ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
+
                     @Override
                     public void onResponse(Bitmap response) {
                         //producto.setImagen2(response);
+                        System.out.println("Antes de Asignar Imagen");
                         imagen.setImageBitmap(response);
+                        System.out.println("Asigna Imagen");
                     }
                 }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener() {
 
@@ -89,7 +93,11 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
                 });
                 request.add(imageRequest);
             }
-            */
+            else{
+                System.out.println("ELSE");
+                imagen.setImageBitmap(producto.getImagen2());
+            }
+
 
         }
     }

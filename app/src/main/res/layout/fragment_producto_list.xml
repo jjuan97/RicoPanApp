@@ -10,6 +10,6 @@
     android:layout_marginRight="4dp"
     android:background="@color/colorBlanco"
     tools:context=".ProductosFragment"
-    tools:itemCount="1"
     tools:listitem="@layout/fragment_producto" />
+
 

@@ -58,7 +58,6 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
         // Required empty public constructor
     }
 
-
     /*
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -93,7 +92,7 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
 
         View vista = inflater.inflate(R.layout.fragment_producto_list, container, false);
         recyclerProductos = (RecyclerView) vista.findViewById(R.id.idRecyclerProductos);
-        llenar();
+        //llenar();
         descargarProductos();
         System.out.println("adapter");
 
