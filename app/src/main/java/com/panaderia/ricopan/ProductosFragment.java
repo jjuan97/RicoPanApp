@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 
 public class ProductosFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener{
 
-    /*
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -44,7 +45,7 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    */
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -53,6 +54,7 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
     ProgressDialog dialog;
     RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
+
 
     public ProductosFragment() {
         // Required empty public constructor
@@ -64,52 +66,101 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ConsultaListaProductosFragment.
-     */
+     * @return A new instance of fragment ProductosFragment.
+    */
     //TODO: Rename and change types and number of parameters
-    /*
-    public static ConsultaListaProductosFragment newInstance(String param1, String param2) {
-        ConsultaListaProductosFragment fragment = new ConsultaListaProductosFragment();
+
+    public static ProductosFragment newInstance(String param1, String param2) {
+        ProductosFragment fragment = new ProductosFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
-    */
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        productos = new ArrayList<>();
-        request = Volley.newRequestQueue(getContext());
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View vista= inflater.inflate(R.layout.fragment_producto_list, container, false);
 
-        View vista = inflater.inflate(R.layout.fragment_producto_list, container, false);
-        recyclerProductos = (RecyclerView) vista.findViewById(R.id.idRecyclerProductos);
-        //llenar();
-        descargarProductos();
-        System.out.println("adapter");
+        productos=new ArrayList<>();
+
+        recyclerProductos = (RecyclerView) vista.findViewById(R.id.idRecyclerProducto);
+        recyclerProductos.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recyclerProductos.setHasFixedSize(true);
+
+        // request= Volley.newRequestQueue(getContext());
+
+        cargarWebService();
 
         return vista;
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
-        recyclerProductos.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerProductos.setHasFixedSize(true);
+    private void cargarWebService() {
+        dialog=new ProgressDialog(getContext());
+        dialog.setMessage("Consultando Productos");
+        dialog.show();
 
-        MyProductoRecyclerViewAdapter adapter = new MyProductoRecyclerViewAdapter(productos, getContext());
-        recyclerProductos.setAdapter(adapter);
-        adapter.setOnItemClickListener(onItemClickListener);
-        adapter.notifyDataSetChanged();
+        String ip=loadPreferences();
+
+        String url="http://"+ip+"/app/productList.php";
+        System.out.println(url);
+        jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        // request.add(jsonObjectRequest);
+        VolleySingleton.getIntanciaVolley(getContext()).addToRequestQueue(jsonObjectRequest);
     }
 
+    @Override
+    public void onResponse(JSONObject response) {
+        Producto producto=null;
+
+        JSONArray json=response.optJSONArray("productos");
+        try {
+            for (int i=0;i<json.length();i++){
+                producto=new Producto();
+                JSONObject jsonObject=null;
+                jsonObject=json.getJSONObject(i);
+
+                producto.setTitle(jsonObject.optString("pro_nombre"));
+                producto.setImagenStr(jsonObject.optString("pro_foto"));
+                productos.add(producto);
+            }
+            dialog.hide();
+            MyProductoRecyclerViewAdapter adapter=new MyProductoRecyclerViewAdapter(productos, getContext());
+            recyclerProductos.setAdapter(adapter);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "No se ha podido establecer conexión con el servidor" +
+                    " "+response, Toast.LENGTH_LONG).show();
+            dialog.hide();
+        }
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(getContext(), "NO SE PUDO CONECTAR "+ error.toString(), Toast.LENGTH_LONG).show();
+        System.out.println();
+        dialog.hide();
+        Log.d("ERROR: ", error.toString());
+    }
+
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -128,33 +179,21 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
         mListener = null;
     }
 
-
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
-    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            //Step 4 of 4: Finally call getTag() on the view.
-            // This viewHolder will have all required values.
-            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
-            int position = viewHolder.getAdapterPosition();
-            // viewHolder.getItemId();
-            // viewHolder.getItemViewType();
-            // viewHolder.itemView;
-            Producto thisItem = productos.get(position);
-            Toast.makeText(getContext(), "You Clicked: " + thisItem.getTitle(), Toast.LENGTH_SHORT).show();
-
-            //Create the intent for navigation purposes; the context is the current Activity, so getActivity() must be called
-            //Intent i = new Intent(getActivity(), activityDescription.class);
-            //Set information in the intent for the next Activity
-            //i.putExtra("nombreLista", thisItem.getTitle());
-            //Launch the new Activity
-            //startActivity(i);
-        }
-    };
 
     private void llenar() {
         productos.add(new Producto("Producto 1", BitmapFactory.decodeResource(getContext().getResources(),
@@ -167,62 +206,11 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
                 R.mipmap.noimagen)));
     }
 
-    private void descargarProductos(){
-        String url ="http://"+loadPreferences()+"/app/productList.php";
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
-        request.add(jsonObjectRequest);
-    }
-
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getContext(), "NO CONEXION:  "+ error.toString(), Toast.LENGTH_SHORT).show();
-        System.out.println("NO CONEXION:  "+ error.toString());
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-        JSONArray json = response.optJSONArray("productos");
-
-        try {
-            for(int i=0; i<json.length(); i++){
-                final Producto producto = new Producto();
-                JSONObject jsonObject = json.getJSONObject(i);
-
-                producto.setTitle(jsonObject.optString("pro_nombre"));
-                String url = jsonObject.optString("pro_foto");
-                if (url.length() > 1){
-                    url = "http://"+loadPreferences()+"/"+ url;
-                    url = url.replace(" ","%20");
-                    producto.setImagenStr(url);
-                    //System.out.println(producto.getImagenStr());
-                }
-                else{
-                    producto.setImagenStr("none");
-                    //producto.setImagen2(BitmapFactory.decodeResource(getContext().getResources(),
-                    //R.mipmap.noimagen));
-                    //System.out.println(producto.getImagenStr());
-
-                }
-                producto.setImagen2(BitmapFactory.decodeResource(getContext().getResources(),
-                        R.mipmap.noimagen));
-                productos.add(producto);
-                // productosIDs.add(jsonObject.optInt("pro_id"));
-            }
-
-        } catch (JSONException e) {
-            Toast.makeText(getContext(), "Error leyendo datos", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-    }
-
     //Codigo para obtener la ip configurada
     public String loadPreferences() {
         SharedPreferences ajustesAdmin = this.getActivity().getSharedPreferences("IPdePref", Context.MODE_PRIVATE);
         String IP = ajustesAdmin.getString("IPnueva", "IP no definida");
         return IP;
     }
-
-
-
 
 }

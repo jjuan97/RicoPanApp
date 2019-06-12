@@ -17,11 +17,6 @@ public class Producto {
         this.imagen2 = imagen;
     }
 
-    public Producto(String title, int imagen) {
-        this.title = title;
-        this.imagen = imagen;
-    }
-
     public String getTitle() {
         return title;
     }

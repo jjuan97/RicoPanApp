@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class GestionActivity extends AppCompatActivity implements
         ProductosFragment.OnFragmentInteractionListener,
-        Response.Listener<JSONObject>, Response.ErrorListener{
+        Response.Listener<JSONObject>, Response.ErrorListener, IFragments{
 
     Button myButton1;
     Button myButton2;
@@ -44,20 +44,6 @@ public class GestionActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestion);
-
-        if(savedInstanceState==null){
-            FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
-            listaProductosFragment=new ProductosFragment();
-            ft.add(R.id.contenedor,
-                    listaProductosFragment,TAG_LIST_FRAGMENT);
-            ft.commitNow();
-        }else{
-            listaProductosFragment=(ProductosFragment)getSupportFragmentManager()
-                    .findFragmentByTag(TAG_LIST_FRAGMENT);
-        }
-
-        productosIDs = new ArrayList<Integer>();
-        requestQueue = Volley.newRequestQueue(this);
 
         myButton1 = (Button)findViewById(R.id.btnPanes);
         myButton2 = (Button)findViewById(R.id.btnPasteles);
@@ -83,6 +69,9 @@ public class GestionActivity extends AppCompatActivity implements
         myButton4.setEnabled(true);
         myButton4.setTextColor(Color.parseColor("#000000"));
         lineaYellowfour.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+
+        Fragment miFragment=new ProductosFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main,miFragment).commit();
     }
 
 

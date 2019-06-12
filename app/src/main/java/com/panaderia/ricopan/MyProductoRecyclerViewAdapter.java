@@ -1,9 +1,8 @@
 package com.panaderia.ricopan;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,32 +17,65 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProductoRecyclerViewAdapter.ViewHolderProductos> {
 
     ArrayList<Producto> productos;
-    Context contexto;
-    private static View.OnClickListener mOnItemClickListener;
-    RequestQueue request;
+    Context context;
 
-    public MyProductoRecyclerViewAdapter(ArrayList<Producto> productos, Context contexto) {
+    public MyProductoRecyclerViewAdapter(ArrayList<Producto> productos, Context context) {
         this.productos = productos;
-        this.contexto = contexto;
+        this.context = context;
     }
 
-    @NonNull
+
     @Override
-    public ViewHolderProductos onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_producto,
-                null,false);
-        return new ViewHolderProductos(view);
+    public ViewHolderProductos onCreateViewHolder(ViewGroup parent, int i) {
+        View vista= LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_producto,parent,false);
+        RecyclerView.LayoutParams layoutParams=new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        vista.setLayoutParams(layoutParams);
+        return new ViewHolderProductos(vista);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderProductos viewHolderProductos, int position) {
-        viewHolderProductos.asignarDatos(productos.get(position));
+    public void onBindViewHolder(ViewHolderProductos holder, int position) {
+        holder.titulo.setText(productos.get(position).getTitle().toString());
 
+        if (productos.get(position).getImagenStr()!=null){
+            //
+            cargarImagenWebService(productos.get(position).getImagenStr(),holder);
+        }else{
+            holder.imagen.setImageResource(R.drawable.noimagen);
+        }
+    }
+
+    private void cargarImagenWebService(String rutaImagen, final ViewHolderProductos holder) {
+
+        //String ip=context.getString(R.string.ip);
+        String ip=loadPreferences();
+        System.out.println(ip);
+
+        String urlImagen="http://"+ip+"/"+rutaImagen;
+        System.out.println(urlImagen);
+        urlImagen=urlImagen.replace(" ","%20");
+
+        ImageRequest imageRequest=new ImageRequest(urlImagen, new Response.Listener<Bitmap>() {
+            @Override
+            public void onResponse(Bitmap response) {
+                holder.imagen.setImageBitmap(response);
+            }
+        }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Toast.makeText(context,"Error al cargar la imagen",Toast.LENGTH_SHORT).show();
+                holder.imagen.setImageResource(R.drawable.noimagen);
+            }
+        });
+        //request.add(imageRequest);
+        VolleySingleton.getIntanciaVolley(context).addToRequestQueue(imageRequest);
     }
 
     @Override
@@ -56,53 +88,17 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
         TextView titulo;
         ImageView imagen;
 
-        public ViewHolderProductos(@NonNull View itemView) {
+        public ViewHolderProductos(View itemView) {
             super(itemView);
-            titulo = (TextView) itemView.findViewById(R.id.tvItem);
-            imagen = (ImageView) itemView.findViewById(R.id.imagenItem);
-            itemView.setTag(this);
-            itemView.setOnClickListener(mOnItemClickListener);
-        }
-
-        public void asignarDatos(final Producto producto) {
-            titulo.setText(producto.getTitle());
-            //imagen.setImageBitmap(producto.getImagen2());
-            //imagen.setImageBitmap(BitmapFactory.decodeResource(contexto.getResources(), R.mipmap.noimagen));
-            request = Volley.newRequestQueue(contexto);
-            String url = producto.getImagenStr();
-            System.out.println(url);
-            if (url.equals("none") == false) {
-                System.out.println("REQUEST");
-                ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
-
-                    @Override
-                    public void onResponse(Bitmap response) {
-                        //producto.setImagen2(response);
-                        System.out.println("Antes de Asignar Imagen");
-                        imagen.setImageBitmap(response);
-                        System.out.println("Asigna Imagen");
-                    }
-                }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println("Imagen no recibida");
-                        Toast.makeText(contexto, "Error al cargar la imagen",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-                request.add(imageRequest);
-            }
-            else{
-                System.out.println("ELSE");
-                imagen.setImageBitmap(producto.getImagen2());
-            }
-
-
+            titulo = (TextView) itemView.findViewById(R.id.idNombre);
+            imagen = (ImageView) itemView.findViewById(R.id.idImagen);
         }
     }
 
-    public void setOnItemClickListener(View.OnClickListener itemClickListener) {
-        this.mOnItemClickListener = itemClickListener;
+
+    public String loadPreferences() {
+        SharedPreferences ajustesAdmin = context.getSharedPreferences("IPdePref", Context.MODE_PRIVATE);
+        String IP = ajustesAdmin.getString("IPnueva", "IP no definida");
+        return IP;
     }
 }

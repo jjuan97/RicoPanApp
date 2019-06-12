@@ -82,11 +82,13 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
             Intent passToConf = new Intent(this, ConfigActivity.class);
             startActivity(passToConf);
         }
-        request.add(jsonObjectRequest);
+        VolleySingleton.getIntanciaVolley(this).addToRequestQueue(jsonObjectRequest);
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
+        Intent passToConf = new Intent(this, ConfigActivity.class);
+        startActivity(passToConf);
         System.out.println("RESPONSE:  "+error.getMessage());
     }
 
