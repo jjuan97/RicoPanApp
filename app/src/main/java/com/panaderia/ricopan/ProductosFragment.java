@@ -139,6 +139,7 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
             dialog.hide();
             MyProductoRecyclerViewAdapter adapter=new MyProductoRecyclerViewAdapter(productos, getContext());
             recyclerProductos.setAdapter(adapter);
+            adapter.setOnItemClickListener(onItemClickListener);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -193,6 +194,29 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+
+    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //Step 4 of 4: Finally call getTag() on the view.
+            // This viewHolder will have all required values.
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+            int position = viewHolder.getAdapterPosition();
+            // viewHolder.getItemId();
+            // viewHolder.getItemViewType();
+            // viewHolder.itemView;
+            Producto thisItem = productos.get(position);
+            //Toast.makeText(getContext(), "You Clicked: " + thisItem.getDetails(), Toast.LENGTH_SHORT).show();
+            //Create the intent for navigation purposes; the context is the current Activity, so getActivity() must be called
+            Intent i = new Intent(getActivity(), MainActivity.class);
+            //Set information in the intent for the next Activity
+            //i.putExtra("nombreLista", thisItem.getTitle());
+            //Launch the new Activity
+            startActivity(i);
+        }
+    };
 
 
     private void llenar() {

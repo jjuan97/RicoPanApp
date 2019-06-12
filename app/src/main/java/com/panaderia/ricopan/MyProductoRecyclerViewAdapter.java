@@ -24,6 +24,7 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
 
     ArrayList<Producto> productos;
     Context context;
+    private static View.OnClickListener mOnItemClickListener;
 
     public MyProductoRecyclerViewAdapter(ArrayList<Producto> productos, Context context) {
         this.productos = productos;
@@ -84,7 +85,6 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
     }
 
     public class ViewHolderProductos extends RecyclerView.ViewHolder {
-
         TextView titulo;
         ImageView imagen;
 
@@ -92,6 +92,9 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
             super(itemView);
             titulo = (TextView) itemView.findViewById(R.id.idNombre);
             imagen = (ImageView) itemView.findViewById(R.id.idImagen);
+
+            itemView.setTag(this);
+            itemView.setOnClickListener(mOnItemClickListener);
         }
     }
 
@@ -100,5 +103,9 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
         SharedPreferences ajustesAdmin = context.getSharedPreferences("IPdePref", Context.MODE_PRIVATE);
         String IP = ajustesAdmin.getString("IPnueva", "IP no definida");
         return IP;
+    }
+
+    public void setOnItemClickListener(View.OnClickListener itemClickListener) {
+        this.mOnItemClickListener = itemClickListener;
     }
 }
