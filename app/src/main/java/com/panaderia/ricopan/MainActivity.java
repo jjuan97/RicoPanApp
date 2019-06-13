@@ -114,29 +114,22 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
     public void entrar(View view){
         sp1 = (Spinner)findViewById(R.id.spinner);
         String  nombre= sp1.getSelectedItem().toString();
-        try {
-            Intent i = new Intent(this, GestionActivity.class);
-            startActivity(i);
-        }catch (Exception error){
-            System.out.println("INTENT : " + error.getMessage());
-        }
-        /*
 
-        if(nombre.equals("Lista de Nombres")){
+        if(nombre.equals("Lista de Nombres") == true){
             Toast.makeText(this, "Seleccione un Nombre!", Toast.LENGTH_SHORT).show();
         }
         else{
             int sp1Position = sp1.getSelectedItemPosition();
             int idUserSelected = idUsers.get(sp1Position - 1);
-            String message1 = "ID: " + Integer.toString(idUserSelected) + " - " + nombre;
+            String message1 = "ID: " + (idUserSelected) + " - " + nombre;
             Toast.makeText(this, message1, Toast.LENGTH_SHORT).show();
-
-            Intent i = new Intent(this, GestionActivity.class);
-            //aceptar.putExtra("idUser", idUserSelected);
-            //aceptar.putExtra("nameUser", nombre);
-            startActivity(i);
+            try {
+                Intent i = new Intent(this, GestionActivity.class);
+                startActivity(i);
+            }catch (Exception error){
+                System.out.println("INTENT : " + error.getMessage());
+            }
         }
-        */
 
     }
 

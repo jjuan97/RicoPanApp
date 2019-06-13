@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -37,7 +38,8 @@ public class GestionActivity extends AppCompatActivity implements
     private JsonObjectRequest jsonObjectRequest;
     private ArrayList<Integer> productosIDs;
 
-    ProductosFragment listaProductosFragment;
+
+    Fragment listaProductosFragment;
     private static final String TAG_LIST_FRAGMENT="TAG_LIST_FRAGMENT";
 
     @Override
@@ -70,8 +72,8 @@ public class GestionActivity extends AppCompatActivity implements
         myButton4.setTextColor(Color.parseColor("#000000"));
         lineaYellowfour.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
 
-        Fragment miFragment=new ProductosFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_main,miFragment).commit();
+        listaProductosFragment=new ProductosFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main,listaProductosFragment).commit();
     }
 
 
@@ -92,6 +94,7 @@ public class GestionActivity extends AppCompatActivity implements
 
     }
 
+
     @Override
     public void onBackPressed() {
         Intent volverMain = new Intent(this, MainActivity.class);
@@ -99,4 +102,8 @@ public class GestionActivity extends AppCompatActivity implements
         startActivity(volverMain);
     }
 
+    public void cambiar(View view) {
+        getSupportFragmentManager().beginTransaction().remove(listaProductosFragment).commit();
+
+    }
 }

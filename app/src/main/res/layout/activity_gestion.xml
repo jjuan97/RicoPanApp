@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimaryLight"
-            android:onClick="cerrar"
+            android:onClick="cambiar"
             android:text="De queso"
             android:textSize="16sp"
             android:textColor="@color/colorNegro"
