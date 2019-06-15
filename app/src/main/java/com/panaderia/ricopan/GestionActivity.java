@@ -23,24 +23,19 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class GestionActivity extends AppCompatActivity implements
-        ProductosFragment.OnFragmentInteractionListener,
-        Response.Listener<JSONObject>, Response.ErrorListener, IFragments{
+        ProductosFragment.OnFragmentInteractionListener, IFragments{
 
-    Button myButton1;
-    Button myButton2;
-    Button myButton3;
-    Button myButton4;
-    TextView lineaYellowone;
-    TextView lineaYellowtwo;
-    TextView lineaYellowthree;
-    TextView lineaYellowfour;
-    private RequestQueue requestQueue;
-    private JsonObjectRequest jsonObjectRequest;
+    Button myButton1, myButton2, myButton3, myButton4, currentButton;
+    TextView lineaYellowone, lineaYellowtwo, lineaYellowthree, lineaYellowfour, currentLine;
     private ArrayList<Integer> productosIDs;
 
+    Fragment listaPanPeqFragment,
+            listaPanGrandeFragment,
+            listaDulceriaFragment,
+            listaQuesoFragment,
+            currentFragment;
 
-    Fragment listaProductosFragment;
-    private static final String TAG_LIST_FRAGMENT="TAG_LIST_FRAGMENT";
+    public static final String TIPO="tipoProducto";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +43,7 @@ public class GestionActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_gestion);
 
         myButton1 = (Button)findViewById(R.id.btnPanes);
-        myButton2 = (Button)findViewById(R.id.btnPasteles);
+        myButton2 = (Button)findViewById(R.id.btnGrandes);
         myButton3 = (Button)findViewById(R.id.btnDulceria);
         myButton4 = (Button)findViewById(R.id.btnQueso);
         lineaYellowone = (TextView)findViewById(R.id.lineYellow1);
@@ -56,38 +51,21 @@ public class GestionActivity extends AppCompatActivity implements
         lineaYellowthree = (TextView)findViewById(R.id.lineYellow3);
         lineaYellowfour = (TextView)findViewById(R.id.lineYellow4);
 
-        myButton1.setEnabled(false);
-        myButton1.setTextColor(Color.parseColor("#000000"));
-        lineaYellowone.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
+        currentButton = myButton1;
+        currentLine = lineaYellowone;
 
-        myButton2.setEnabled(true);
-        myButton2.setTextColor(Color.parseColor("#000000"));
-        lineaYellowtwo.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+        currentButton.setEnabled(false);
+        currentButton.setTextColor(getResources().getColor(R.color.textoSelect));
+        currentLine.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
 
-        myButton3.setEnabled(true);
-        myButton3.setTextColor(Color.parseColor("#000000"));
-        lineaYellowthree.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-
-        myButton4.setEnabled(true);
-        myButton4.setTextColor(Color.parseColor("#000000"));
-        lineaYellowfour.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-
-        listaProductosFragment=new ProductosFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_main,listaProductosFragment).commit();
+        listaPanPeqFragment=new ProductosFragment();
+        Bundle bundle= new Bundle();
+        bundle.putString(TIPO,"6");
+        listaPanPeqFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().add(R.id.content_main,listaPanPeqFragment).commit();
+        currentFragment = listaPanPeqFragment;
     }
 
-
-
-
-    @Override
-    public void onErrorResponse(VolleyError error) {
-
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-
-    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
@@ -102,8 +80,92 @@ public class GestionActivity extends AppCompatActivity implements
         startActivity(volverMain);
     }
 
-    public void cambiar(View view) {
-        getSupportFragmentManager().beginTransaction().remove(listaProductosFragment).commit();
+    public void changeToPan(View view){
+        //getSupportFragmentManager().beginTransaction().remove(listaPanPeqFragment).commit();
+        getSupportFragmentManager().beginTransaction().hide(currentFragment).commit();
 
+        if(listaPanPeqFragment == null){
+            listaPanPeqFragment= new ProductosFragment();
+            Bundle bundle= new Bundle();
+            bundle.putString(TIPO,"6");
+            listaPanPeqFragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().add(R.id.content_main,listaPanPeqFragment).commit();
+            currentFragment = listaPanPeqFragment;
+        }
+        else{
+            getSupportFragmentManager().beginTransaction().show(listaPanPeqFragment).commit();
+            currentFragment = listaPanPeqFragment;
+        }
+        changeColors(myButton1, lineaYellowone);
+    }
+
+    public void changeToPanGrande(View view){
+        //getSupportFragmentManager().beginTransaction().remove(listaPanPeqFragment).commit();
+        getSupportFragmentManager().beginTransaction().hide(currentFragment).commit();
+
+        if(listaPanGrandeFragment == null){
+            listaPanGrandeFragment= new ProductosFragment();
+            Bundle bundle= new Bundle();
+            bundle.putString(TIPO,"5");
+            listaPanGrandeFragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().add(R.id.content_main,listaPanGrandeFragment).commit();
+            currentFragment = listaPanGrandeFragment;
+        }
+        else{
+            getSupportFragmentManager().beginTransaction().show(listaPanGrandeFragment).commit();
+            currentFragment = listaPanGrandeFragment;
+        }
+        changeColors(myButton2, lineaYellowtwo);
+    }
+
+    public void changeToDulceria(View view){
+        //getSupportFragmentManager().beginTransaction().remove(listaPanPeqFragment).commit();
+        getSupportFragmentManager().beginTransaction().hide(currentFragment).commit();
+
+        if(listaDulceriaFragment == null){
+            listaDulceriaFragment= new ProductosFragment();
+            Bundle bundle= new Bundle();
+            bundle.putString(TIPO,"4");
+            listaDulceriaFragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().add(R.id.content_main,listaDulceriaFragment).commit();
+            currentFragment = listaDulceriaFragment;
+        }
+        else{
+            getSupportFragmentManager().beginTransaction().show(listaDulceriaFragment).commit();
+            currentFragment = listaDulceriaFragment;
+        }
+        changeColors(myButton3, lineaYellowthree);
+    }
+
+
+    public void changeToPanQueso(View view) {
+        //getSupportFragmentManager().beginTransaction().remove(listaPanPeqFragment).commit();
+        getSupportFragmentManager().beginTransaction().hide(currentFragment).commit();
+
+        if(listaQuesoFragment == null){
+            listaQuesoFragment= new ProductosFragment();
+            Bundle bundle= new Bundle();
+            bundle.putString(TIPO,"3");
+            listaQuesoFragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().add(R.id.content_main,listaQuesoFragment).commit();
+            currentFragment = listaQuesoFragment;
+        }
+        else{
+            getSupportFragmentManager().beginTransaction().show(listaQuesoFragment).commit();
+            currentFragment = listaQuesoFragment;
+        }
+        changeColors(myButton4, lineaYellowfour);
+    }
+
+    public void changeColors(Button thisButton, TextView thisLine){
+        currentButton.setEnabled(true);
+        currentButton.setTextColor(Color.parseColor("#000000"));
+        currentLine.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+
+        thisButton.setEnabled(false);
+        thisButton.setTextColor(getResources().getColor(R.color.textoSelect));
+        thisLine.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
+        currentButton = thisButton;
+        currentLine = thisLine;
     }
 }

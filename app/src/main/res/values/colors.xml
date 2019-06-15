@@ -12,5 +12,6 @@
     <color name="colorBackground">#FA002721</color>
     <color name="colorBlanco">#ffffff</color>
     <color name="colorNegro">#000000</color>
+    <color name="textoSelect">#5E5E5E</color>
 
 </resources>

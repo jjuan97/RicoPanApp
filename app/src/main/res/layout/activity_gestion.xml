@@ -26,83 +26,84 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <Button
             android:id="@+id/btnPanes"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            app:fontFamily="@font/autour_one"
             android:background="@color/colorPrimaryLight"
-            android:text="Panes"
-            android:textColor="@color/colorNegro"
-            android:textSize="16sp"
-            app:fontFamily="@font/autour_one" />
+            android:text="Pan\nPequeno"
+            android:onClick="changeToPan"
+            android:textSize="14sp" />
 
         <Button
-            android:id="@+id/btnPasteles"
+            android:id="@+id/btnGrandes"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            app:fontFamily="@font/autour_one"
             android:background="@color/colorPrimaryLight"
-            android:text="Pasteles"
-            android:textColor="@color/colorNegro"
-            android:textSize="16sp"
-            app:fontFamily="@font/autour_one" />
+            android:text="Pan\nGrande"
+            android:onClick="changeToPanGrande"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btnDulceria"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            app:fontFamily="@font/autour_one"
             android:background="@color/colorPrimaryLight"
             android:text="Dulcería"
-            android:textColor="@color/colorNegro"
-            android:textSize="16sp"
-            app:fontFamily="@font/autour_one" />
+            android:onClick="changeToDulceria"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/btnQueso"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            app:fontFamily="@font/autour_one"
             android:background="@color/colorPrimaryLight"
-            android:onClick="cambiar"
+            android:onClick="changeToPanQueso"
             android:text="De queso"
-            android:textSize="16sp"
-            android:textColor="@color/colorNegro"
-            app:fontFamily="@font/autour_one"/>
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="3">
+        >
 
         <TextView
             android:id="@+id/lineYellow1"
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="@color/colorSecondaryLight"
+            android:background="@color/colorPrimaryLight"
             android:layout_weight="1"/>
         <TextView
             android:id="@+id/lineYellow2"
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="@color/colorSecondaryLight"
+            android:background="@color/colorPrimaryLight"
             android:layout_weight="1"/>
+
         <TextView
             android:id="@+id/lineYellow3"
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="@color/colorSecondaryLight"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryLight" />
         <TextView
             android:id="@+id/lineYellow4"
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="@color/colorSecondaryLight"
+            android:background="@color/colorPrimaryLight"
             android:layout_weight="1"/>
 
     </LinearLayout>

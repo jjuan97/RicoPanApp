@@ -57,10 +57,10 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
 
         //String ip=context.getString(R.string.ip);
         String ip=loadPreferences();
-        System.out.println(ip);
+        //System.out.println(ip);
 
         String urlImagen="http://"+ip+"/"+rutaImagen;
-        System.out.println(urlImagen);
+        //System.out.println(urlImagen);
         urlImagen=urlImagen.replace(" ","%20");
 
         ImageRequest imageRequest=new ImageRequest(urlImagen, new Response.Listener<Bitmap>() {
