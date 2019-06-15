@@ -28,6 +28,7 @@ public class GestionActivity extends AppCompatActivity implements
     Button myButton1, myButton2, myButton3, myButton4, currentButton;
     TextView lineaYellowone, lineaYellowtwo, lineaYellowthree, lineaYellowfour, currentLine;
     private ArrayList<Integer> productosIDs;
+    private int idUser;
 
     Fragment listaPanPeqFragment,
             listaPanGrandeFragment,
@@ -36,11 +37,16 @@ public class GestionActivity extends AppCompatActivity implements
             currentFragment;
 
     public static final String TIPO="tipoProducto";
+    public static final String IDUSER="IDUser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestion);
+
+        Intent data= getIntent();
+        idUser= data.getIntExtra("IDUser", 0);
+        System.out.println("ID User - "+idUser);
 
         myButton1 = (Button)findViewById(R.id.btnPanes);
         myButton2 = (Button)findViewById(R.id.btnGrandes);
@@ -53,7 +59,6 @@ public class GestionActivity extends AppCompatActivity implements
 
         currentButton = myButton1;
         currentLine = lineaYellowone;
-
         currentButton.setEnabled(false);
         currentButton.setTextColor(getResources().getColor(R.color.textoSelect));
         currentLine.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
@@ -61,6 +66,7 @@ public class GestionActivity extends AppCompatActivity implements
         listaPanPeqFragment=new ProductosFragment();
         Bundle bundle= new Bundle();
         bundle.putString(TIPO,"6");
+        bundle.putInt(IDUSER,idUser);
         listaPanPeqFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().add(R.id.content_main,listaPanPeqFragment).commit();
         currentFragment = listaPanPeqFragment;
@@ -88,6 +94,7 @@ public class GestionActivity extends AppCompatActivity implements
             listaPanPeqFragment= new ProductosFragment();
             Bundle bundle= new Bundle();
             bundle.putString(TIPO,"6");
+            bundle.putInt(IDUSER,idUser);
             listaPanPeqFragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().add(R.id.content_main,listaPanPeqFragment).commit();
             currentFragment = listaPanPeqFragment;
@@ -107,6 +114,7 @@ public class GestionActivity extends AppCompatActivity implements
             listaPanGrandeFragment= new ProductosFragment();
             Bundle bundle= new Bundle();
             bundle.putString(TIPO,"5");
+            bundle.putInt(IDUSER,idUser);
             listaPanGrandeFragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().add(R.id.content_main,listaPanGrandeFragment).commit();
             currentFragment = listaPanGrandeFragment;
@@ -126,6 +134,7 @@ public class GestionActivity extends AppCompatActivity implements
             listaDulceriaFragment= new ProductosFragment();
             Bundle bundle= new Bundle();
             bundle.putString(TIPO,"4");
+            bundle.putInt(IDUSER,idUser);
             listaDulceriaFragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().add(R.id.content_main,listaDulceriaFragment).commit();
             currentFragment = listaDulceriaFragment;
@@ -146,6 +155,7 @@ public class GestionActivity extends AppCompatActivity implements
             listaQuesoFragment= new ProductosFragment();
             Bundle bundle= new Bundle();
             bundle.putString(TIPO,"3");
+            bundle.putInt(IDUSER,idUser);
             listaQuesoFragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().add(R.id.content_main,listaQuesoFragment).commit();
             currentFragment = listaQuesoFragment;

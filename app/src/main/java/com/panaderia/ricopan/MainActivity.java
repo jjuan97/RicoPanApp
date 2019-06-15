@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
             Toast.makeText(this, message1, Toast.LENGTH_SHORT).show();
             try {
                 Intent i = new Intent(this, GestionActivity.class);
+                i.putExtra("IDUser", idUserSelected);
                 startActivity(i);
             }catch (Exception error){
                 System.out.println("INTENT : " + error.getMessage());

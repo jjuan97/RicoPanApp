@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
-        android:text="Lista de productos"
+        android:text="@string/texto3"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="28dp"
         android:textColor="@color/colorBlanco"

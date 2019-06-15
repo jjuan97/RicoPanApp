@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EdicionActivity"
+    android:background="@mipmap/back_menu2"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_datos_traidos_pan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:text="Lista de productos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorBlanco"
+        android:textSize="28dp"
+        app:fontFamily="@font/autour_one"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/et_ingresar1_pan"
+        android:layout_width="145dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="#FA002721"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="panes"
+        android:inputType="number"
+        android:textColor="#ffffff"
+        android:textColorHint="#FAB8FFEF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_info_panes" />
+
+    <TextView
+        android:id="@+id/txt_cantidad_pan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/cantidad"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_datos_traidos_pan"
+        android:textColor="#ffffff"
+        app:fontFamily="@font/autour_one"/>
+
+    <TextView
+        android:id="@+id/txt_info_panes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/nPanes"
+        android:textColor="#ffffff"
+        android:textSize="19sp"
+        app:fontFamily="@font/autour_one"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_cantidad_pan" />
+
+    <Button
+        android:id="@+id/btn_cambio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:onClick="PasarAbandeja"
+        android:text="@string/btnCambio"
+        app:fontFamily="@font/autour_one"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ingresar1_pan" />
+
+    <Button
+        android:id="@+id/btn_disminuir_pan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/btnDisminuir"
+        app:layout_constraintBottom_toTopOf="@+id/btn_agregar_pan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:fontFamily="@font/autour_one"/>
+
+    <Button
+        android:id="@+id/btn_agregar_pan"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/btnAumentar"
+        android:onClick="registrarProduction"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:fontFamily="@font/autour_one"/>
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView19"
+        app:layout_constraintEnd_toStartOf="@+id/btn_disminuir_pan"
+        app:srcCompat="@mipmap/minus2"
+        android:contentDescription="@string/imgDescrip"
+        />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_agregar_pan"
+        app:srcCompat="@mipmap/plus2"
+        android:contentDescription="@string/imgDescrip2"/>
+
+</android.support.constraint.ConstraintLayout>
