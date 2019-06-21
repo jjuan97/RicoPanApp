@@ -3,6 +3,7 @@ package com.panaderia.ricopan;
 import android.graphics.Bitmap;
 
 public class Producto {
+    private int id;
     public String title;
     private String imagenStr;
     public int imagen;
@@ -15,6 +16,14 @@ public class Producto {
     public Producto(String title, Bitmap imagen) {
         this.title = title;
         this.imagen2 = imagen;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

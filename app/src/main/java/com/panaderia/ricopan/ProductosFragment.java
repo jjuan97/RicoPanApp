@@ -43,11 +43,14 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
 
     private OnFragmentInteractionListener mListener;
     private String tipoProducto;
+    private int idUser;
 
     RecyclerView recyclerProductos;
     ArrayList<Producto> productos;
     ProgressDialog dialog;
     JsonObjectRequest jsonObjectRequest;
+
+
 
 
     public ProductosFragment() {
@@ -60,7 +63,9 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             tipoProducto = getArguments().getString(GestionActivity.TIPO);
+            idUser = getArguments().getInt(GestionActivity.IDUSER, 0);
             System.out.println("TIPO: "+tipoProducto);
+            //System.out.println("ID : "+ idUser);
         }
     }
 
@@ -108,6 +113,7 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
 
                 producto.setTitle(jsonObject.optString("pro_nombre"));
                 producto.setImagenStr(jsonObject.optString("pro_foto"));
+                producto.setId(jsonObject.optInt("pro_id"));
                 productos.add(producto);
             }
             //dialog.hide();
@@ -184,9 +190,12 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
             Producto thisItem = productos.get(position);
             //Toast.makeText(getContext(), "You Clicked: " + thisItem.getDetails(), Toast.LENGTH_SHORT).show();
             //Create the intent for navigation purposes; the context is the current Activity, so getActivity() must be called
-            Intent i = new Intent(getActivity(), MainActivity.class);
+            Intent i = new Intent(getActivity(), EdicionActivity.class);
             //Set information in the intent for the next Activity
-            //i.putExtra("nombreLista", thisItem.getTitle());
+            i.putExtra("IDProducto", thisItem.getId());
+            i.putExtra("nombreProducto", thisItem.getTitle());
+            i.putExtra("IDUser", idUser);
+            i.putExtra("Tipo",tipoProducto);
             //Launch the new Activity
             startActivity(i);
         }

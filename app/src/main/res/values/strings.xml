@@ -9,10 +9,10 @@
     <string name="nPanes">Numero de nuevos panes: </string>
     <string name="nBandejas">Numero de nuevas bandejas: </string>
     <string name="nPanes2">Numero de panes por bandeja: </string>
-    <string name="btnCambio">Ingresar por bandejas</string>
-    <string name="btnCambio2">Ingresar por unidad</string>
-    <string name="btnDisminuir">Disminuir</string>
-    <string name="btnAumentar">Aumentar</string>
+    <string name="btnCambio">Ingreso por bandejas</string>
+    <string name="btnCambio2">Ingreso por unidad</string>
+    <string name="btnDisminuir">Corregir Cantidad</string>
+    <string name="btnAumentar">Agregar Cantidad</string>
     <string name="selCant">Cant.</string>
     <string name="imgDescrip">img18</string>
     <string name="imgDescrip2">img19</string>
