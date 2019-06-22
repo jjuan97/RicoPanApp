@@ -24,7 +24,7 @@ public class MyProductoRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
 
     ArrayList<Producto> productos;
     Context context;
-    private static View.OnClickListener mOnItemClickListener;
+    private View.OnClickListener mOnItemClickListener;
 
     public MyProductoRecyclerViewAdapter(ArrayList<Producto> productos, Context context) {
         this.productos = productos;

@@ -39,38 +39,43 @@ public class ListadoProductos extends AppCompatActivity implements
         //proceso de inflacion de tabLayout, view page para fragments y creacion objeto adapterFragment
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         viewPagerFragment = (ViewPager) findViewById(R.id.view_pager);
+
+        //viewPagerFragment.addOnPageChangeListener((ViewPager.OnPageChangeListener) this);
+
         viewPagerFragment.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener());
         SectionsPagerAdapter adapterFragment = new SectionsPagerAdapter(getSupportFragmentManager());
         //creado el objeto ViewPagerFragmentAdapter procedemos a adicionar fragments con la funcion addFragment de la clase ViewPagerFragmentAdapter
 
-        listaPanPeqFragment=new ProductosFragment();
+        listaPanPeqFragment=new ProductosFragmentOne();
         Bundle bundle= new Bundle();
         bundle.putString(TIPO,"6");
         bundle.putInt(IDUSER,idUser);
         listaPanPeqFragment.setArguments(bundle);
+        adapterFragment.addFragment(listaPanPeqFragment, getString(R.string.tab_one));
 
-        listaPanGrandeFragment= new ProductosFragment();
+        listaPanGrandeFragment= new ProductosFragmentTwo();
         Bundle bundle2= new Bundle();
         bundle2.putString(TIPO,"5");
         bundle2.putInt(IDUSER,idUser);
         listaPanGrandeFragment.setArguments(bundle2);
+        adapterFragment.addFragment(listaPanGrandeFragment, getString(R.string.tab_two));
 
-        listaDulceriaFragment= new ProductosFragment();
+        listaDulceriaFragment= new ProductosFragmentThree();
         Bundle bundle3= new Bundle();
         bundle3.putString(TIPO,"4");
         bundle3.putInt(IDUSER,idUser);
         listaDulceriaFragment.setArguments(bundle3);
+        adapterFragment.addFragment(listaDulceriaFragment, getString(R.string.tab_four));
 
-        listaQuesoFragment= new ProductosFragment();
+
+        listaQuesoFragment= new ProductosFragmentFour();
         Bundle bundle4= new Bundle();
         bundle4.putString(TIPO,"3");
         bundle4.putInt(IDUSER,idUser);
         listaQuesoFragment.setArguments(bundle4);
-
-        adapterFragment.addFragment(listaPanPeqFragment, getString(R.string.tab_one));
-        adapterFragment.addFragment(listaPanGrandeFragment, getString(R.string.tab_two));
         adapterFragment.addFragment(listaQuesoFragment, getString(R.string.tab_three));
-        adapterFragment.addFragment(listaDulceriaFragment, getString(R.string.tab_four));
+
+
         //configuracion adapterFragment al content_main(xml)
         viewPagerFragment.setAdapter(adapterFragment);
         tabLayout.setupWithViewPager(viewPagerFragment);

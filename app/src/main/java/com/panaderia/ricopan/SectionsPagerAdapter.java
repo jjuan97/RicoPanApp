@@ -18,11 +18,16 @@ import java.util.List;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+    static final int NUM_ITEMS = 4;
+    private final FragmentManager mFragmentManager;
+    private Fragment mFragmentAtPos0;
+
     private final List<Fragment> fragmentList = new ArrayList<>();
     private final List<String> fragmentListTitles = new ArrayList<>();
 
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
+        mFragmentManager = fm;
     }
 
     @Override
@@ -32,7 +37,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return fragmentListTitles.size();
+        return NUM_ITEMS;
     }
 
     @Nullable
