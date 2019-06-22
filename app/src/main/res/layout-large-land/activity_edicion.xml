@@ -28,17 +28,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/colorBlanco"
         android:ems="10"
         android:gravity="center"
         android:hint="Ingresar aqui"
-        android:textColorHint="#ffffff"
-        android:backgroundTint="@color/colorBlanco"
         android:inputType="number"
         android:textColor="@color/colorBlanco"
+        android:textColorHint="#ffffff"
         android:textSize="24sp"
         app:fontFamily="@font/autour_one"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_info_panes" />
 
@@ -48,42 +46,38 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="16dp"
         android:text="@string/nPanes"
         android:textColor="@color/colorBlanco"
         android:textSize="20sp"
         app:fontFamily="@font/autour_one"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txt_datos_traidos_pan" />
 
     <TextView
         android:id="@+id/txt_info_panes3"
-        android:layout_width="150dp"
+        android:layout_width="450dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Numero de panes mal ingresados"
+        android:layout_marginTop="20dp"
+        android:text="Numero de panes mal ingresados:"
         android:textColor="@color/colorBlanco"
         android:textSize="20sp"
-        android:gravity="center"
         app:fontFamily="@font/autour_one"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
 
     <TextView
         android:id="@+id/txt_info_panes4"
-        android:layout_width="150dp"
+        android:layout_width="450dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Correccion de panes"
+        android:text="Correccion de panes:"
         android:textColor="@color/colorBlanco"
         android:textSize="20sp"
-        android:gravity="center"
         app:fontFamily="@font/autour_one"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_info_panes3" />
 
     <Button
         android:id="@+id/btn_cambio"
@@ -104,15 +98,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/gtradiant_button"
         android:text="@string/btnDisminuir"
         android:textColor="@color/colorNegro"
         app:fontFamily="@font/autour_one"
-        app:layout_constraintBottom_toTopOf="@+id/btn_cambio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_info_panes4" />
 
     <Button
         android:id="@+id/btn_agregar_pan"
@@ -120,13 +112,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:background="@drawable/gtradiant_button"
         android:onClick="registrarProduction"
         android:text="@string/btnAumentar"
         android:textColor="@color/colorNegro"
         app:fontFamily="@font/autour_one"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_ingresar1_pan" />
 
@@ -135,44 +125,43 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="2dp"
+        android:layout_marginStart="76dp"
         android:contentDescription="@string/imgDescrip2"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_agregar_pan"
         app:srcCompat="@mipmap/plus2" />
 
     <EditText
         android:id="@+id/editText3"
-        android:layout_width="50dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginStart="16dp"
         android:backgroundTint="@color/colorBlanco"
         android:ems="10"
         android:gravity="center"
         android:hint="#"
-        app:fontFamily="@font/autour_one"
         android:inputType="number"
-        android:textColorHint="#ffffff"
         android:textColor="@color/colorBlanco"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+        android:textColorHint="#ffffff"
+        app:fontFamily="@font/autour_one"
+        app:layout_constraintStart_toEndOf="@+id/txt_info_panes4"
+        app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
     <EditText
         android:id="@+id/editText4"
-        android:layout_width="50dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/colorBlanco"
         android:ems="10"
         android:gravity="center"
         android:hint="#"
-        app:fontFamily="@font/autour_one"
-        android:textColor="@color/colorBlanco"
         android:inputType="number"
+        android:textColor="@color/colorBlanco"
         android:textColorHint="#ffffff"
-        app:layout_constraintStart_toStartOf="parent"
+        app:fontFamily="@font/autour_one"
+        app:layout_constraintStart_toEndOf="@+id/txt_info_panes3"
         app:layout_constraintTop_toBottomOf="@+id/imageView19" />
 
 </android.support.constraint.ConstraintLayout>

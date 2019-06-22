@@ -43,7 +43,10 @@ public class EdicionBandejasActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent volver = new Intent(this, EdicionActivity.class);
+        volver.putExtra("IDProducto", idProducto);
+        volver.putExtra("nombreProducto", nombreProducto);
         volver.putExtra("IDUser",idUser);
+        volver.putExtra("Tipo",tipoProducto);
         startActivity(volver);
     }
 }

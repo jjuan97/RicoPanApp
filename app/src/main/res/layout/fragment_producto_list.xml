@@ -11,5 +11,3 @@ tools:context="com.panaderia.ricopan.ProductosFragment">
         tools:itemCount="5" />
 
 </FrameLayout>
-
-

@@ -5,13 +5,13 @@
     <string name="desc">imageView</string>
     <string name="btn_log">Aceptar</string>
     <string name="texto3">Inventario</string>
-    <string name="cantidad">- Cantidad actual</string>
+    <string name="cantidad">Cantidad actual</string>
     <string name="nPanes">Numero de nuevos panes: </string>
     <string name="nBandejas">Numero de nuevas bandejas: </string>
     <string name="nPanes2">Numero de panes por bandeja: </string>
-    <string name="btnCambio">Ingreso por bandejas</string>
+    <string name="btnCambio">Ingresar por bandejas</string>
     <string name="btnCambio2">Ingreso por unidad</string>
-    <string name="btnDisminuir">Corregir Cantidad</string>
+    <string name="btnDisminuir">Enviar Observación</string>
     <string name="btnAumentar">Agregar Cantidad</string>
     <string name="selCant">Cant.</string>
     <string name="imgDescrip">img18</string>
