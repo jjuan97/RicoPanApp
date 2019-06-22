@@ -6,12 +6,20 @@
     <color name="colorSecondary">#dff644</color>
     <color name="colorSecondaryDark">#aac300</color>
     <color name="colorSecondaryLight">#ffff7a</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#dff644</color>
     <color name="colorSpinner">#E8E8E8</color>
     <color name="colorBoton">#E74B4B</color>
     <color name="colorBackground">#FA002721</color>
     <color name="colorBlanco">#ffffff</color>
     <color name="colorNegro">#000000</color>
+    <color name="colorNegroTranslucido">#57000000</color>
     <color name="textoSelect">#5E5E5E</color>
+    <color name="gradiant1">#00742d</color>
+    <color name="gradiant2">#e4e4d9</color>
+    <color name="gradiant_btn1">#DDDAD6</color>
+    <color name="gradiant_btn2">#ffffff</color>
+    <color name="colorPrimaryDarkTranslucido">#B000742D</color>
+    <color name="colorPrimaryLightTranslucido">#AD54D686</color>
+    <color name="colorPrimaryLightTranslucido2">#E254D686</color>
 
 </resources>

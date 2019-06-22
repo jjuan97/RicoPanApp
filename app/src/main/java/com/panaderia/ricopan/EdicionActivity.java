@@ -41,7 +41,7 @@ public class EdicionActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent volver = new Intent(this, GestionActivity.class);
+        Intent volver = new Intent(this, ListadoProductos.class);
         volver.putExtra("IDUser",idUser);
         startActivity(volver);
     }

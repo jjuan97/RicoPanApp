@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EdicionBandejasActivity"></activity>
+        <activity
+            android:name=".ListadoProductos"
+            android:label="@string/title_activity_listado_productos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".EdicionBandejasActivity" />
         <activity android:name=".EdicionActivity" />
         <activity android:name=".GestionActivity" />
         <activity android:name=".ConfigActivity" />

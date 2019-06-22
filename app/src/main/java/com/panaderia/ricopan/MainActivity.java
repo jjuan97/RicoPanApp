@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
             String message1 = "ID: " + (idUserSelected) + " - " + nombre;
             Toast.makeText(this, message1, Toast.LENGTH_SHORT).show();
             try {
-                Intent i = new Intent(this, GestionActivity.class);
+                Intent i = new Intent(this, ListadoProductos.class);
                 i.putExtra("IDUser", idUserSelected);
                 startActivity(i);
             }catch (Exception error){

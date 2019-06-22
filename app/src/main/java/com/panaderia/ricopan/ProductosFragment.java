@@ -62,8 +62,8 @@ public class ProductosFragment extends Fragment implements Response.Listener<JSO
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            tipoProducto = getArguments().getString(GestionActivity.TIPO);
-            idUser = getArguments().getInt(GestionActivity.IDUSER, 0);
+            tipoProducto = getArguments().getString(ListadoProductos.TIPO);
+            idUser = getArguments().getInt(ListadoProductos.IDUSER, 0);
             System.out.println("TIPO: "+tipoProducto);
             //System.out.println("ID : "+ idUser);
         }
